@@ -15,6 +15,7 @@ class Config {
 	public DB_NAME: string | undefined;
 	private readonly DEFAULT_DATABASE_URI = "mongodb://127.0.0.1:27017";
 	public NODE_ENV: string | undefined;
+	public TELEGRAM_BOT_TOKEN: string | undefined;
 
 	constructor() {
 		this.PORT = process.env.PORT || "5000";
@@ -26,11 +27,12 @@ class Config {
 		this.DATABASE_URI = process.env.DATABASE_URI ?? this.DEFAULT_DATABASE_URI;
 		this.DB_NAME = process.env.DB_NAME ?? "rest-api-ts";
 		this.NODE_ENV = process.env.NODE_ENV;
+		this.TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 	}
 
 	public validateConfig(): void {
-		for (const [key,value] of Object.entries(this)) {
-			console.log(key,value)
+		for (const [key, value] of Object.entries(this)) {
+			console.log(key, value)
 			if (value === undefined) {
 				throw new Error(`Configuration ${key} is undefined.`);
 			}
